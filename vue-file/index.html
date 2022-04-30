@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width", initial-scale=1.0">
+  <title>file upload</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .drop_area {
+    color: gray;
+    font-weight: bold;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 300px;
+    border: 5px solid gray;
+    border-radius: 15px;
+  }
+  .enter {
+    border: 10px dotted powderblue;
+  }
+  .ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <div class="drop_area"
+      @dragenter="dragEnter"
+      @dragleave="dragLeave"
+      @dragover.prevent
+      @drop.prevent="dropFile"
+      :class="{enter: isEnter}">
+      Upload
+    </div>
+    <div>
+      <ul>
+        <li v-for="file in files">
+          <img src="img/icon-file.png">{{ file.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        isEnter: false,
+        files: []
+      },
+      methods: {
+        dragEnter() {
+          this.isEnter = true;
+        },
+        dragLeave() {
+          this.isEnter = false;
+        },
+        // dragOver() {
+        //   console.log('DragOver');
+        // },
+        dropFile() {
+          this.files = [...event.dataTransfer.files];
+          this.isEnter = false;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
