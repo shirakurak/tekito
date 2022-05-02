@@ -1,1 +1,7 @@
-
+body {
+  background-color: #013146;
+  color: #fdffff;
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+}
