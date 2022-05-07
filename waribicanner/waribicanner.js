@@ -11,6 +11,8 @@ cameraButton.onclick = () => {
   let arr0 = [1, 2];
 
   // 計算結果表示エリアの作成
+  resultDivided.innerText = '';
+
   const header = document.createElement('h3');
   header.innerText = '計算結果';
   resultDivided.appendChild(header);
@@ -26,7 +28,7 @@ cameraButton.onclick = () => {
   resultDivided.appendChild(paragraph2);
 
   // ツイートエリアの作成
-  
+
 }
 
 function sum(arr) {
