@@ -18,16 +18,34 @@ cameraButton.onclick = () => {
   resultDivided.appendChild(header);
 
   const paragraph1 = document.createElement('p');
-  const result1 = sum(arr0);
-  paragraph1.innerText = result1 + '円の割引です！';
+  const yen = sum(arr0);
+  const result1 = yen + '円の割引です！';
+  paragraph1.innerText = result1;
   resultDivided.appendChild(paragraph1);
 
   const paragraph2 = document.createElement('p');
-  const result2 = answer(result1);
+  const result2 = answer(yen);
   paragraph2.innerText = result2;
   resultDivided.appendChild(paragraph2);
 
   // ツイートエリアの作成
+  tweetDivided.innerText = '';
+  const anchor = document.createElement('a');
+  const hrefValue =
+    'https://twitter.com/intent/tweet?button_hashtag=' +
+    encodeURIComponent('今回の割引金額') +
+    '&ref_src=twsrc%5Etfw';
+
+  anchor.setAttribute('href', hrefValue);
+  anchor.setAttribute('class', 'twitter-hashtag-button');
+  anchor.setAttribute('data-text', result1 + result2);
+  anchor.innerText = 'Tweet #今回の割引金額';
+
+  tweetDivided.appendChild(anchor);
+
+  const script = document.createElement('script');
+  script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+  tweetDivided.appendChild(script);
 
 }
 
@@ -52,8 +70,10 @@ function answer(sum) {
     return 'すごしゃち';
   } else if (sum < 5000) {
     return 'すごフクロウ';
-  } else {
+  } else if (sum < 10000) {
     return 'すごさめ';
+  } else {
+    return '判定不能';
   }
 }
 
