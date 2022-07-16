@@ -1,0 +1,1 @@
+p "Ruby is an oriented programming language".split.sort
