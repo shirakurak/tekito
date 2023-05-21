@@ -5,24 +5,22 @@ const puppeteer = require('puppeteer');
 const config = require('./config');
 
 (async () => {
-  // const browser = await puppeteer.launch({ headless: "new" });
-  const browser = await puppeteer.launch({ headless: false });  // 実際に開く場合
+  const browser = await puppeteer.launch({ headless: "new" });
+  // const browser = await puppeteer.launch({ headless: false });  // 実際に開く場合
   const page = await browser.newPage();
   await page.goto(config.url);
 
-  await page.evaluate(() => {
-    localStorage.setItem('token', 'abc');
-    localStorage.setItem('name', 'John');
-    localStorage.setItem('email', 'john@example.com');
-  });
+  // await page.evaluate(() => {
+  //   localStorage.setItem('token', 'abc');
+  //   localStorage.setItem('name', 'John');
+  //   localStorage.setItem('email', 'john@example.com');
+  // });
 
   console.log("localStrageの内容を取得します");
-  
-  let localStrageData = null;
-  const k = config.key;
-  console.log(k);
 
-  if (k === '') {
+  let localStrageData = null;
+
+  if (config.key === '') {
     localStrageData = await page.evaluate(() => {
       const json = {};
       for (let i = 0; i < localStorage.length; i++) {
@@ -38,7 +36,5 @@ const config = require('./config');
   }
 
   console.log(localStrageData);
-
   await browser.close();
-
 })();

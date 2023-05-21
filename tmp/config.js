@@ -1,4 +1,4 @@
 module.exports = {
   url: 'https://shirakurak.github.io/',
-  key: '' // all or key
+  key: 'aaa' // all or key
 };
