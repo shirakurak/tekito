@@ -19,10 +19,10 @@ const config = require('./config');
   console.log("localStrageの内容を取得します");
   
   let localStrageData = null;
-  const type = config.type;
-  console.log(type);
+  const k = config.key;
+  console.log(k);
 
-  if (type === '') {
+  if (k === '') {
     localStrageData = await page.evaluate(() => {
       const json = {};
       for (let i = 0; i < localStorage.length; i++) {
