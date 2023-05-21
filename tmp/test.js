@@ -29,18 +29,11 @@ const config = require('./config');
       }
       return json;
     });
-  } else if (config.type == 'token') {
-    console.log("no!");
+  } else {
+    localStrageData = await page.evaluate(() => {
+      return localStorage.getItem('token');
+    });
   }
-  
-  // const localStrageData = await page.evaluate(() => {
-  //   const json = {};
-  //   for (let i = 0; i < localStorage.length; i++) {
-  //     const key = localStorage.key(i);
-  //     json[key] = localStorage.getItem(key);
-  //   }
-  //   return json;
-  // });
 
   console.log(localStrageData);
 
