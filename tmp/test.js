@@ -1,5 +1,17 @@
-console.log("ページを開きます");
+// puppeteerを使用する
+// `npm install puppeteer`
+// `npm list puppeteer`
+const puppeteer = require('puppeteer');
 
-// write code
+console.log("aaa");
 
-console.log("開きました")
+(async () => {
+  console.log("ページを開きます");
+
+
+
+
+  console.log("開きました")
+})
+
+console.log("bbb");
