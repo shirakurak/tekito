@@ -10,6 +10,7 @@ const config = require('./config');
   const page = await browser.newPage();
   await page.goto(config.url);
 
+  // for Test
   // await page.evaluate(() => {
   //   localStorage.setItem('token', 'abc');
   //   localStorage.setItem('name', 'John');
@@ -17,10 +18,10 @@ const config = require('./config');
   // });
 
   console.log("localStrageの内容を取得します");
-
   let localStrageData = null;
+  const k = config.key
 
-  if (config.key === '') {
+  if (k === '') {
     localStrageData = await page.evaluate(() => {
       const json = {};
       for (let i = 0; i < localStorage.length; i++) {
@@ -30,9 +31,9 @@ const config = require('./config');
       return json;
     });
   } else {
-    localStrageData = await page.evaluate(() => {
-      return localStorage.getItem('token');
-    });
+    localStrageData = await page.evaluate((k) => {
+      return localStorage.getItem(k);
+    }, k);
   }
 
   console.log(localStrageData);
