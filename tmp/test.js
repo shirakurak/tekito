@@ -12,6 +12,10 @@ const puppeteer = require('puppeteer');
   await page.goto('https://shirakurak.github.io/');
   console.log("開きました");
 
+  await page.evaluate(() => {
+    localStorage.setItem('token', 'abc');
+  });
+
   console.log("localStrageの内容を取得します");
   const localStrageData = await page.evaluate(() => {
     const json = {};
@@ -24,6 +28,6 @@ const puppeteer = require('puppeteer');
 
   console.log(localStrageData);
 
-  // await browser.close();
+  await browser.close();
 
 })();
